@@ -182,15 +182,17 @@ def test_has_relationship(movie_interface):
 
 
 def test_garbage_input(movie_interface):
-    response = add_actor("trash", "trash", {"trash": "trash"})
+    response = movie_interface.add_actor("trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
-    response = add_movie("trash", "trash", {"trash": "trash"})
+    response = movie_interface.add_movie("trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
-    response = add_relationship("trash", "trash", {"trash": "trash"})
+    response = movie_interface.add_relationship(
+        "trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
-    response = get_actor("trash", "trash", {"trash": "trash"})
+    response = movie_interface.get_actor("trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
-    response = get_movie("trash", "trash", {"trash": "trash"})
+    response = movie_interface.get_movie("trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
-    response = has_relationship("trash", "trash", {"trash": "trash"})
+    response = movie_interface.has_relationship(
+        "trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
