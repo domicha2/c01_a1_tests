@@ -1,5 +1,6 @@
 import pytest
 import requests
+import json
 
 
 class MovieInterface():
@@ -12,7 +13,7 @@ class MovieInterface():
         req = requests.Request(
             request_type,
             self.base_url + resource,
-            data=data,
+            data=json.dumps(data),
         )
         prep = self.session.prepare_request(req)
         return self.session.send(prep)
