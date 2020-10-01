@@ -32,12 +32,12 @@ class MovieInterface():
             data = {"actorId": actorId, "movieId": movieId}
         return self.send_request("PUT", data, "addRelationship")
 
-    def get_actor(self, name, actorId, data=None):
+    def get_actor(self, actorId, data=None):
         if data == None:
             data = {"actorId": actorId}
         return self.send_request("GET", data, "getActor")
 
-    def get_movie(self, name, movieId, data=None):
+    def get_movie(self, movieId, data=None):
         if data == None:
             data = {"movieId": movieId}
         return self.send_request("GET", data, "getMovie")
