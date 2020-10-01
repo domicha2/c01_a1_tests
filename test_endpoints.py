@@ -11,7 +11,7 @@ class MovieInterface():
     def send_request(self, request_type, data, resource):
         req = requests.Request(
             request_type,
-            self.base_url,
+            self.base_url + resource,
             data=data,
         )
         prep = self.session.prepare_request(req)
