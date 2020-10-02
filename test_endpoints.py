@@ -191,10 +191,10 @@ def test_garbage_input(movie_interface):
     response = movie_interface.add_relationship("trash", "trash", {"trash": "trash"})
     assert response.status_code == 400
 
-    response = movie_interface.get_actor("trash", "trash", {"trash": "trash"})
+    response = movie_interface.get_actor("trash", {"trash": "trash"})
     assert response.status_code == 400
 
-    response = movie_interface.get_movie("trash", "trash", {"trash": "trash"})
+    response = movie_interface.get_movie("trash", {"trash": "trash"})
     assert response.status_code == 400
 
     response = movie_interface.has_relationship("trash", "trash", {"trash": "trash"})
