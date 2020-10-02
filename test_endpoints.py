@@ -149,34 +149,34 @@ def test_getMovie(movie_interface):
     response = movie_interface.add_movie("naruto", "3")
     assert response.status_code == 200
 
-    response = movie_interface.get_actor("3")
+    response = movie_interface.get_movie("3")
     assert response.status_code == 200
     assert response.json() == {"name": "naruto", "movieId": "3", "actors": []}
 
 
 def test_has_relationship(movie_interface):
-    response = movie_interface.add_relationship("1", "1")
+    response = movie_interface.has_relationship("1", "1")
     assert response.status_code == 200
     assert response.json() == {"actorId": "1",  "movieId": "1", "hasRelationship": True}
 
-    response = movie_interface.add_relationship("2", "1")
+    response = movie_interface.has_relationship("2", "1")
     # actor doesnt exist
     assert response.status_code == 404
 
-    response = movie_interface.add_relationship("1", "2")
+    response = movie_interface.has_relationship("1", "2")
     # movie doesnt exist
     assert response.status_code == 404
 
-    response = movie_interface.add_relationship("2", "2")
+    response = movie_interface.has_relationship("2", "2")
     # movie doesnt exist
     assert response.status_code == 404
 
-    response = movie_interface.add_relationship("3", "1")
+    response = movie_interface.has_relationship("3", "1")
     # no relationship already exists
     assert response.status_code == 200
     assert response.json() == {"actorId": "3", "movieId": "1", "hasRelationship": False}
 
-    response = movie_interface.add_relationship("1", "3")
+    response = movie_interface.has_relationship("1", "3")
     # no relationship already exists one more
     assert response.status_code == 200
     assert response.json() == {"actorId": "1", "movieId": "3", "hasRelationship": False}
