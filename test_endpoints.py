@@ -198,11 +198,11 @@ def test_compute_number(movie_interface):
     # kevin bacon himself
     response = movie_interface.compute_bacon_number("nm0000102")
     assert response.status_code == 200
-    assert response.json() == {"baconNumber": 0}
+    assert response.json() == {"baconNumber": "0"}
     # bacon degree 1
     response = movie_interface.compute_bacon_number(3)
     assert response.status_code == 200
-    assert response.json() == {"baconNumber": 1}
+    assert response.json() == {"baconNumber": "1"}
     # bacon degree 2
     response = movie_interface.compute_bacon_path(4)
     assert response.status_code == 200
@@ -216,7 +216,7 @@ def test_compute_number(movie_interface):
     assert response.status_code == 404
 
 
-def test_compute_number(movie_interface):
+def test_compute_path(movie_interface):
     movie_interface.add_relationship(1, 3)
     movie_interface.add_relationship(3, 1)
     movie_interface.add_movie("bleach", "5")
@@ -227,7 +227,7 @@ def test_compute_number(movie_interface):
     response = movie_interface.compute_bacon_path("nm0000102")
     assert response.status_code == 200
     assert response.json() == {"baconPath": [
-        {"actorId": "nm0000102", "movieId": "1"}], "baconNumber": 0}
+        {"actorId": "nm0000102", "movieId": "1"}], "baconNumber": "0"}
     # bacon degree 1
     response = movie_interface.compute_bacon_path(3)
     assert response.status_code == 200
