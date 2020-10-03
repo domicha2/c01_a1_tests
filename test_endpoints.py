@@ -195,6 +195,10 @@ def test_has_relationship(movie_interface):
 def test_compute_number(movie_interface):
     movie_interface.add_relationship("1", "3")
     movie_interface.add_relationship("3", "1")
+    movie_interface.add_movie("bleach", "5")
+    movie_interface.add_actor("johnny", "4")
+    movie_interface.add_relationship("4", "5")
+    movie_interface.add_relationship("3", "5")
     # kevin bacon himself
     response = movie_interface.compute_bacon_number("nm0000102")
     assert response.status_code == 200
@@ -217,12 +221,6 @@ def test_compute_number(movie_interface):
 
 
 def test_compute_path(movie_interface):
-    movie_interface.add_relationship("1", "3")
-    movie_interface.add_relationship("3", "1")
-    movie_interface.add_movie("bleach", "5")
-    movie_interface.add_actor("johnny", "4")
-    movie_interface.add_relationship("4", "5")
-    movie_interface.add_relationship("3", "5")
     # kevin bacon himself
     response = movie_interface.compute_bacon_path("nm0000102")
     assert response.status_code == 200
