@@ -193,8 +193,8 @@ def test_has_relationship(movie_interface):
 
 
 def test_compute_number(movie_interface):
-    movie_interface.add_relationship(1, 3)
-    movie_interface.add_relationship(3, 1)
+    movie_interface.add_relationship("1", "3")
+    movie_interface.add_relationship("3", "1")
     # kevin bacon himself
     response = movie_interface.compute_bacon_number("nm0000102")
     assert response.status_code == 200
@@ -211,39 +211,39 @@ def test_compute_number(movie_interface):
     response = movie_interface.compute_bacon_number("12")
     assert response.status_code == 400
     # actors exist but no path
-    response = movie_interface.add_actor("johnny", 9)
+    response = movie_interface.add_actor("johnny", "9")
     response = movie_interface.compute_bacon_number("9")
     assert response.status_code == 404
 
 
 def test_compute_path(movie_interface):
-    movie_interface.add_relationship(1, 3)
-    movie_interface.add_relationship(3, 1)
+    movie_interface.add_relationship("1", "3")
+    movie_interface.add_relationship("3", "1")
     movie_interface.add_movie("bleach", "5")
     movie_interface.add_actor("johnny", "4")
-    movie_interface.add_relationship(4, 5)
-    movie_interface.add_relationship(3, 5)
+    movie_interface.add_relationship("4", "5")
+    movie_interface.add_relationship("3", "5")
     # kevin bacon himself
     response = movie_interface.compute_bacon_path("nm0000102")
     assert response.status_code == 200
     assert response.json() == {"baconPath": [
         {"actorId": "nm0000102", "movieId": "1"}], "baconNumber": "0"}
     # bacon degree 1
-    response = movie_interface.compute_bacon_path(3)
+    response = movie_interface.compute_bacon_path("3")
     assert response.status_code == 200
     assert response.json() == {"baconPath": [{"actorId": "3", "movieId": "1"}, {
         "movieId": "1", "actorId": "nm0000102"}], "baconNumber": "1"}
     # bacon degree 2
-    response = movie_interface.compute_bacon_path(4)
+    response = movie_interface.compute_bacon_path("4")
     assert response.status_code == 200
     assert response.json() == {"baconPath": [{"actorId": "4", "movieId": "5"}, {
         "movieId": "1", "actorId": "3"}, {"movieId": "1", "actorId": "nm0000102"}], "baconNumber": "2"}
     # actor dne
-    response = movie_interface.compute_bacon_path(12)
+    response = movie_interface.compute_bacon_path("12")
     assert response.status_code == 400
     # actors exist but no path
-    response = movie_interface.add_actor("johnny", 9)
-    response = movie_interface.compute_bacon_path(9)
+    response = movie_interface.add_actor("johnny", "9")
+    response = movie_interface.compute_bacon_path("9")
     assert response.status_code == 404
 
 
