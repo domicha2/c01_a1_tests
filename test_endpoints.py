@@ -93,6 +93,9 @@ def test_add_actor(movie_interface):
     response = movie_interface.add_actor("Kevin Bacon", "nm0000102")
     # same name and id is not cool
     assert response.status_code == 400
+    # same name different actor.. no beuno
+    response = movie_interface.add_movie("Kevin Bacon", "12")
+    assert response.status_code == 400
 
 
 def test_add_movie(movie_interface):
@@ -105,6 +108,9 @@ def test_add_movie(movie_interface):
 
     response = movie_interface.add_movie("space jam", "1")
     # same name and id is not cool
+    assert response.status_code == 400
+    # same name different movie.. no beuno
+    response = movie_interface.add_movie("space jam", "12")
     assert response.status_code == 400
 
 
