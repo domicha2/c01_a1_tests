@@ -200,19 +200,19 @@ def test_compute_number(movie_interface):
     assert response.status_code == 200
     assert response.json() == {"baconNumber": "0"}
     # bacon degree 1
-    response = movie_interface.compute_bacon_number(3)
+    response = movie_interface.compute_bacon_number("3")
     assert response.status_code == 200
     assert response.json() == {"baconNumber": "1"}
     # bacon degree 2
-    response = movie_interface.compute_bacon_path(4)
+    response = movie_interface.compute_bacon_number("4")
     assert response.status_code == 200
     assert response.json() == {"baconNumber": "2"}
     # actor dne
-    response = movie_interface.compute_bacon_number(12)
+    response = movie_interface.compute_bacon_number("12")
     assert response.status_code == 400
     # actors exist but no path
     response = movie_interface.add_actor("johnny", 9)
-    response = movie_interface.compute_bacon_number(9)
+    response = movie_interface.compute_bacon_number("9")
     assert response.status_code == 404
 
 
