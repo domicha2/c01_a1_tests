@@ -221,7 +221,7 @@ def test_compute_number(movie_interface):
     response = movie_interface.compute_bacon_number("12")
     assert response.status_code == 400
     # actors exist but no path
-    response = movie_interface.add_actor("johnny", "9")
+    response = movie_interface.add_actor("johnnyyy", "9")
     response = movie_interface.compute_bacon_number("9")
     assert response.status_code == 404
 
@@ -246,7 +246,6 @@ def test_compute_path(movie_interface):
     response = movie_interface.compute_bacon_path("12")
     assert response.status_code == 400
     # actors exist but no path
-    response = movie_interface.add_actor("johnny", "9")
     response = movie_interface.compute_bacon_path("9")
     assert response.status_code == 404
 
